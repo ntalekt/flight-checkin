@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.pyc
+__pycache__/
+.DS_Store
+auto-southwest-check-in/
+package-lock.json
