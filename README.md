@@ -42,8 +42,27 @@ git clone https://github.com/jdholtz/auto-southwest-check-in.git
 docker-compose up --build
 ```
 
+### 4. Verify Installation
+```bash
+docker compose ps
+```
+Expected Output:
+| NAME | COMMAND | SERVICE | STATUS | PORTS |
+|------|---------|---------|--------|-------|
+| flight-checkin_backend_1 | "python checkin.py" | backend | running | 0.0.0.0:5000->5000/tcp, :::5000->5000/tcp |
+| flight-checkin_frontend_1 | "/docker-entrypoint.…" | frontend | running | 0.0.0.0:3000->80/tcp, :::3000->80/tcp |
+
+### 5. Check Logs
+```bash
+docker compose logs -f backend
+docker compose logs -f frontend
+```
+
 ## 🌐 Access the Web UI
 1. Open browser to `http://localhost:3000`
+
+### Base UI
+![UI](https://i.imgur.com/A8PxWDv.png)
 
 ## Uninstall
 ```bash
@@ -54,7 +73,7 @@ docker compose down --volumes --rmi all
 
 1. Enter your flight confirmation number
 2. Input first and last name
-3. Click "Check In"
+3. Click "Check In Now"
 4. Automatic check-in will be processed
 
 ## 🛡 Security Notes
