@@ -1,6 +1,9 @@
 # Southwest Auto Check-In System ✈️
 
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Stargazers](https://img.shields.io/github/stars/ntalekt/flight-checkin?style=flat)](https://github.com/ntalekt/flight-checkin/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/ntalekt/flight-checkin?style=flat)](https://github.com/ntalekt/flight-checkin/commits/master)
 
 ## Project Overview
 
@@ -14,6 +17,14 @@ An automated web application that simplifies Southwest Airlines flight check-ins
 - **Secure Credentials**: Environment variable management
 - **Production Ready**: Dockerized microservices architecture
 - **API Documentation**: Built-in Swagger UI
+
+## Security 🔒
+
+- Input sanitization
+- Credential encryption
+- Rate limiting
+- CORS protection
+- Error message redaction
 
 ## 🛠 Tech Stack
 
@@ -62,12 +73,12 @@ git clone https://github.com/jdholtz/auto-southwest-check-in.git
 cp .env.example .env
 ```
 
-### Build and Run
+### 4. Build and Run
 ```bash
 docker-compose up --build
 ```
 
-### Verify Installation
+### 5. Verify Installation
 ```bash
 docker compose ps
 ```
@@ -77,18 +88,21 @@ Expected Output:
 | flight-checkin_backend_1 | "uvicorn src.main:ap…" | backend | running | 0.0.0.0:8000->8000/tcp, :::8000->8000/tcp |
 | flight-checkin_frontend_1 | "/docker-entrypoint.…" | frontend | running | 0.0.0.0:3000->80/tcp, :::3000->80/tcp |
 
-### Check Logs
+### 6. Check Logs
 ```bash
 docker compose logs -f backend
 docker compose logs -f frontend
 ```
 
-## 🌐 Access the Web UI
+## Access the Web UI 🌐
 1. Web UI: `http://localhost:3000`
 2. API Docs: `http://localhost:8000/api/docs`
 
-### Base UI
+### Web UI
 ![UI](https://i.imgur.com/YzbDLEo.png)
+
+### API Docs
+![API](https://i.imgur.com/y2teVwt.png)
 
 ## Uninstall
 ```bash
