@@ -1,6 +1,6 @@
 # Southwest Auto Check-In System ✈️
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Stargazers](https://img.shields.io/github/stars/ntalekt/flight-checkin?style=flat)](https://github.com/ntalekt/flight-checkin/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/ntalekt/flight-checkin?style=flat)](https://github.com/ntalekt/flight-checkin/commits/master)
