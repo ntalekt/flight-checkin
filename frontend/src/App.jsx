@@ -1,54 +1,42 @@
 import React, { useState } from 'react';
+import { Container, Typography, Alert, CircularProgress } from '@mui/material';
+import CheckInForm from './components/CheckInForm';
+import { checkIn } from './services/api';
 
 export default function App() {
-  const [formData, setFormData] = useState({
-    confirmation: '',
-    firstName: '',
-    lastName: ''
-  });
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (formData) => {
     try {
-      const response = await fetch('http://backend:5000/checkin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const result = await response.json();
-      alert(result.output || result.message);
-    } catch (error) {
-      alert('Check-in failed: ' + error.message);
+      setLoading(true);
+      const response = await checkIn(formData);
+      if (response.status === 'success') {
+        setResult(response.output);
+        setError('');
+      } else {
+        setError(response.output);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container">
-      <h1>Southwest Auto Check-In</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Confirmation Number"
-          value={formData.confirmation}
-          onChange={(e) => setFormData({...formData, confirmation: e.target.value})}
-          required
-        />
-        <input
-          type="text"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-          required
-        />
-        <button type="submit">Check In Now</button>
-      </form>
-    </div>
+    <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Typography variant="h3" gutterBottom>
+        ✈️ Flight Check-In
+      </Typography>
+      
+      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+      {result && <Alert severity="success" sx={{ mb: 2 }}>{result}</Alert>}
+
+      <CheckInForm onSubmit={handleSubmit} loading={loading} />
+      
+      {loading && <CircularProgress sx={{ display: 'block', mx: 'auto', mt: 2 }} />}
+    </Container>
   );
 }
