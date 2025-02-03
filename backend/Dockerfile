@@ -3,7 +3,9 @@ FROM python:3.11-slim as builder
 
 WORKDIR /app
 COPY backend/requirements.txt .
-RUN pip install --user --no-cache-dir -r requirements.txt
+COPY auto-southwest-check-in/requirements.txt ./sw-requirements.txt
+RUN pip install --user --no-cache-dir -r requirements.txt \
+    && pip install --user --no-cache-dir -r sw-requirements.txt
 
 # Runtime stage
 FROM python:3.11-slim
